@@ -66,5 +66,5 @@ Add notes about how to use the system.
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
-This project is guided by ©️ **[MERAKI Academy](https://www.meraki-academy.org)**
+This project is guided by ©️ **[7ushki](https://www.meraki-academy.org)**
 
