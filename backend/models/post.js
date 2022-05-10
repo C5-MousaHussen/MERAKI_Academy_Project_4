@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema({
   description: { type: String, required: true },
   image: { type: String },
   like: { type: Number},
-  Comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
 module.exports = mongoose.model("Post", postSchema);

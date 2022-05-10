@@ -39,15 +39,15 @@ const getAllPosts = (req, res) => {
 
   postModel
     .find({})
-    .populate("comment")
+    .populate("comments")
     .then((posts) => {
-      if (articles.length) {
+      if (posts.length) {
         res.status(200).json({
           success: true,
           message: `All the articles`,
           userId: userId,
-          articles: posts,
-          comment: posts.comments,
+          posts: posts,
+          comments: posts.comments,
         });
       } else {
         res.status(200).json({
@@ -65,4 +65,33 @@ const getAllPosts = (req, res) => {
     });
 };
 
-module.exports = { createPost, getAllPosts };
+// this function get post by author to show in profile of user...
+
+const getPostByAuthor = (req, res) => {
+  let authorName = req.query.author;
+
+  postModel
+    .find({ author: authorName })
+    .then((posts) => {
+      if (!posts.length) {
+        return res.status(404).json({
+          success: false,
+          message: `The author: ${authorName} has no Posts for this user yet`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `All the articles for the author: ${authorName}`,
+        posts: posts,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { createPost, getAllPosts, getPostByAuthor };
