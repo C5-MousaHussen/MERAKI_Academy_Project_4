@@ -39,12 +39,12 @@ const getAllPosts = (req, res) => {
 
   postModel
     .find({})
-    .populate("comments")
+    //.populate("comments")
     .then((posts) => {
       if (posts.length) {
         res.status(200).json({
           success: true,
-          message: `All the articles`,
+          message: `All the Posts`,
           userId: userId,
           posts: posts,
           comments: posts.comments,
@@ -81,7 +81,7 @@ const getPostByAuthor = (req, res) => {
       }
       res.status(200).json({
         success: true,
-        message: `All the articles for the author: ${authorName}`,
+        message: `All the Posts for the author: ${authorName}`,
         posts: posts,
       });
     })
