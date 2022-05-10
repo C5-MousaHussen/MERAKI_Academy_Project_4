@@ -1,16 +1,10 @@
 const mongoose = require("mongoose");
 
 const librarySchema = new mongoose.Schema({
-  likes: [
+  like: [
     {
-      likeId: { type: String },
-      mediaType: { type: String },
-    },
-  ],
-  favourites: [
-    {
-      favId: { type: String },
-      mediaType: { type: String },
+      like: { type: String },
+      mediaType: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
     },
   ],
   user: { type: Schema.Types.ObjectId, ref: "User" },

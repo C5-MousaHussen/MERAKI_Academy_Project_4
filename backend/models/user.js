@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   country: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  //likes:[{posts}]
 });
 
 userSchema.pre("save", async function () {
