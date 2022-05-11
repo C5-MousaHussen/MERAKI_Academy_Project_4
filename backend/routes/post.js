@@ -3,8 +3,6 @@ const express = require("express");
 const {
   createPost,
   getAllPosts,
-  getPostByAuthor,
-  deletePostByAuthor,
 } = require("../controllers/post");
 
 //The middelwere
@@ -17,7 +15,6 @@ const postRouter = express.Router();
 //the ffect router..
 postRouter.post("/", authentication, createPost);
 postRouter.get("/", authentication, getAllPosts);
-postRouter.get("/search", getPostByAuthor);
-postRouter.delete("/", deletePostByAuthor);
+
 
 module.exports = postRouter;

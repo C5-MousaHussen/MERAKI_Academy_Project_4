@@ -65,10 +65,7 @@ const getAllPosts = (req, res) => {
     });
 };
 
-
 module.exports = {
   createPost,
   getAllPosts,
-  getPostByAuthor,
-  deletePostByAuthor,
 };
