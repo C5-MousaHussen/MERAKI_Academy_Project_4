@@ -1,4 +1,5 @@
 const express = require("express");
+const { findOneAndUpdate, findByIdAndUpdate } = require("../models/post");
 
 const postModel = require("../models/post");
 
@@ -34,10 +35,11 @@ const getPostByAuthor = (req, res) => {
 // this function for delete post from the author
 
 const deletePostByauthor = (req, res) => {
-  const author = req.params.id;
+  const author = req.token.userId;
+  const _id = req.body._id;
 
   postModel
-    .deleteOne({ author })
+    .findByIdAndDelete({ _id })
     .then((result) => {
       if (!result.deletedCount) {
         return res.status(404).json({
@@ -49,6 +51,7 @@ const deletePostByauthor = (req, res) => {
         success: true,
         message: `Deleted articles for the author: ${author}`,
         result,
+        author,
       });
     })
     .catch((err) => {
@@ -61,7 +64,32 @@ const deletePostByauthor = (req, res) => {
 };
 
 // this function is for update the post for user
+const updatePostByAuthor = (req, res) => {
+  const _id = req.body._id;
+  const description = req.body.description
 
+  postModel
+    .findByIdAndUpdate({ _id }, {description:description})
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Post: ${_id} is not found`,
+        });
+      }
+      res.status(202).json({
+        success: true,
+        message: `Post updated`,
+        article: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
 
-
-module.exports = { getPostByAuthor, deletePostByauthor };
+module.exports = { getPostByAuthor, deletePostByauthor ,updatePostByAuthor};

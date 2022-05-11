@@ -18,7 +18,7 @@ const profileRouter = require("./routes/profile");
 // Routes Middleware
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-app.use("/posts", postRouter);
+app.use("/home", postRouter);
 app.use("/profile", profileRouter);
 
 // Handles any other endpoints [unassigned - endpoints]

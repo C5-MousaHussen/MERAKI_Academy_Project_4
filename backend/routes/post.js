@@ -7,7 +7,7 @@ const {
 
 //The middelwere
 const authentication = require("../middleware/authentication");
-const post = require("../models/post");
+
 
 // create a router for post
 const postRouter = express.Router();
