@@ -4,7 +4,7 @@ require("dotenv").config();
 require("./models/db");
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -15,12 +15,10 @@ const loginRouter = require("./routes/login");
 const postRouter = require("./routes/post");
 const profileRouter = require("./routes/profile");
 
-
 // Routes Middleware
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
 app.use("/posts", postRouter);
-
 app.use("/profile", profileRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
