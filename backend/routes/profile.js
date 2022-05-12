@@ -2,8 +2,8 @@ const express = require("express");
 
 const {
   getPostByAuthor,
-  deletePostByauthor,
-  updatePostByAuthor,
+  deletePostById,
+  updatePostById,
 } = require("../controllers/profile");
 
 //The middelwere
@@ -13,7 +13,7 @@ const authentication = require("../middleware/authentication");
 const profileRouter = express.Router();
 
 profileRouter.get("/:id", getPostByAuthor);
-profileRouter.delete("/:id", authentication, deletePostByauthor);
-profileRouter.put("/:id", updatePostByAuthor);
+profileRouter.delete("/:id", authentication, deletePostById);
+profileRouter.put("/:id", updatePostById);
 
 module.exports = profileRouter;

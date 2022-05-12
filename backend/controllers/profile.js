@@ -34,7 +34,7 @@ const getPostByAuthor = (req, res) => {
 
 // this function for delete post from the author
 
-const deletePostByauthor = (req, res) => {
+const deletePostById = (req, res) => {
   const author = req.token.userId;
   const _id = req.body._id;
 
@@ -64,7 +64,7 @@ const deletePostByauthor = (req, res) => {
 };
 
 // this function is for update the post for user
-const updatePostByAuthor = (req, res) => {
+const updatePostById = (req, res) => {
   const _id = req.body._id;
   const description = req.body.description
 
@@ -92,4 +92,4 @@ const updatePostByAuthor = (req, res) => {
     });
 };
 
-module.exports = { getPostByAuthor, deletePostByauthor ,updatePostByAuthor};
+module.exports = { getPostByAuthor, deletePostById ,updatePostById};
