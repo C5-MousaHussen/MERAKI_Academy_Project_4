@@ -24,8 +24,8 @@ const register = (req, res) => {
         author: result,
       });
     })
-    .catch((error) => {
-      if (error.keyPattern) {
+    .catch((err) => {
+      if (err.keyPattern) {
         return res.status(409).json({
           success: false,
           message: `The email already exists`,
