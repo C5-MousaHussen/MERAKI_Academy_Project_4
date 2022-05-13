@@ -18,6 +18,7 @@ const createComment = (req, res) => {
       postModel
         .updateOne({ _id: postId }, { $push: { comments: result._id } })
         .then(() => {
+          //console.log(result);
           res.status(201).json({
             success: true,
             message: `Comment added`,
