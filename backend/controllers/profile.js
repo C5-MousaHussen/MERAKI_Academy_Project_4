@@ -1,4 +1,5 @@
 const express = require("express");
+const post = require("../models/post");
 const { findOneAndUpdate, findByIdAndUpdate } = require("../models/post");
 
 const postModel = require("../models/post");
@@ -10,6 +11,7 @@ const getPostByAuthor = (req, res) => {
 
   postModel
     .find({ author: authorName })
+    .populate("author")
     .then((posts) => {
       if (!posts.length) {
         return res.status(404).json({
@@ -66,10 +68,10 @@ const deletePostById = (req, res) => {
 // this function is for update the post for user
 const updatePostById = (req, res) => {
   const _id = req.body._id;
-  const description = req.body.description
+  const description = req.body.description;
 
   postModel
-    .findByIdAndUpdate({ _id }, {description:description})
+    .findByIdAndUpdate({ _id }, { description: description })
     .then((result) => {
       if (!result) {
         return res.status(404).json({
@@ -92,4 +94,4 @@ const updatePostById = (req, res) => {
     });
 };
 
-module.exports = { getPostByAuthor, deletePostById ,updatePostById};
+module.exports = { getPostByAuthor, deletePostById, updatePostById };
