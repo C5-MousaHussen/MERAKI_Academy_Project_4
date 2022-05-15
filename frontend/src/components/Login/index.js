@@ -5,7 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 
 export const Login = () => {
-  const { token, setToken, isLogin, setisLogin } = useContext(UserContext);
+  const {
+    token,
+    setToken,
+    isLogin,
+    setisLogin,
+    userId,
+    setUserId,
+    firstName,
+    setfirstName,
+    lastName,
+    setlastName,
+  } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -20,11 +31,22 @@ export const Login = () => {
         setToken(result.data.token);
         const token = result.data.token;
         setisLogin(true);
-        //console.log(token);
+        console.log(result);
+        setUserId(result.data._id);
+        const userId = result.data._id;
+        setfirstName(result.data.firstName);
+        const firstName = result.data.firstName;
+        const lastName = result.data.lastName;
+        setlastName(result.data.lastName);
+        
+
         setisLogin(true);
         const isLogin = true;
         navigate("/home");
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("lastName", lastName);
         // console.log("login Success");
       })
       .catch((error) => {
