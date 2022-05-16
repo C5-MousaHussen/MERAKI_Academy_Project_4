@@ -12,10 +12,11 @@ import { Navbar } from "../Navbar";
 1- i need go show element of the user */
 
 export const ProfileOfUser = () => {
-  const { isLogin, setisLogin, userId, setUserId } = useContext(UserContext);
+  const { image, setImage } = useContext(UserContext);
 
   const [articles, setArticels] = useState([]);
   const [comments, setComment] = useState("");
+  const [postImage, setPostImage] = useState("");
 
   const token = localStorage.getItem("token");
   const userId1 = localStorage.getItem("userId");
@@ -30,8 +31,9 @@ export const ProfileOfUser = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((result) => {
-        // console.log(result);
+        //console.log(result.data.posts[0].author.image);
         setArticels(result.data.posts);
+        setImage(result.data.posts[0].author.image);
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +47,7 @@ export const ProfileOfUser = () => {
   // here create post depertment
 
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  //const [image, setImage] = useState("");
   const [like, setLike] = useState("");
   const [message, setMessage] = useState("");
 
@@ -55,7 +57,7 @@ export const ProfileOfUser = () => {
     axios
       .post(
         "http://localhost:5000/post/",
-        { description, image, like },
+        { description, postImage, like },
         { headers: { Authorization: `Bearer ${tokenInStorage}` } }
       )
       .then((result) => {
@@ -67,18 +69,49 @@ export const ProfileOfUser = () => {
       });
   };
 
+  // function to upload image for post
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", postImage);
+    data.append("upload_preset", "srcmongo");
+    data.append("cloud_name", "mousa");
+
+    fetch("  https://api.cloudinary.com/v1_1/mousa/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        // console.log(data);
+        setPostImage(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // console.log(postImage);
   return (
     <div className="contanerOfProile">
       <div className="navbarBox">
-        <div className="navbar"><Navbar /></div>
+        <div className="navbar">
+          <Navbar />
+        </div>
       </div>
       <div className="profile">
         <div className="editProfile">
           <div className="styleUser">
-            <button className="butonEdit">Edit profile</button>
-            <h2 className="userName">
-              {firstName.toUpperCase()} {lastName.toLocaleUpperCase()}
-            </h2>
+            <div className="first">
+              <h2 className="userName">
+                <div className="profilePicture">
+                  <img className="profilePicture" src={image} />{" "}
+                </div>
+                <div className="name">
+                  {firstName.toUpperCase()} {lastName.toUpperCase()}
+                </div>
+              </h2>
+            </div>
+            <div className="second">
+              <button className="butonEdit">Edit profile</button>
+            </div>
           </div>
           <div className="createPost">
             <div className="areaText">
@@ -90,6 +123,15 @@ export const ProfileOfUser = () => {
                 }}
               ></textarea>{" "}
               <br />
+              <input
+                className="inputRegister"
+                type="file"
+                onChange={(e) => {
+                  // console.log(e.target.files[0]);
+                  setPostImage(e.target.files[0]);
+                }}
+              ></input>{" "}
+              <button onClick={uploadImage}>Upload</button>
               <button className="buttonOfTweet" onClick={newPost}>
                 {" "}
                 Tweet
@@ -102,13 +144,20 @@ export const ProfileOfUser = () => {
         <div className="getPost">
           {articles &&
             articles.map((element) => {
-              //console.log(element);
+              // console.log(element.postImage);
               return (
                 <div>
                   <h4 id={element.id}>{element.author.firstName}</h4>
                   <br />
                   <p>{element.description}</p>
-                  <p>{element.like} </p>
+                  <p
+                    className="pImagePost"
+                    style={{
+                      display: element.postImage !== "" ? "block" : "none",
+                    }}
+                  >
+                    <img className="imagePost" src={element.postImage} />{" "}
+                  </p>
                   <div className="borderPost"></div>
 
                   <br />
