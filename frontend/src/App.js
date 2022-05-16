@@ -15,9 +15,12 @@ export const UserContext = createContext();
 function App() {
   const [token, setToken] = useState("");
   const [isLogin, setisLogin] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   const [userId, setUserId] = useState("");
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
 
   // console.log(userId);
 
@@ -35,6 +38,12 @@ function App() {
           setfirstName,
           lastName,
           setlastName,
+          isSearch,
+          setIsSearch,
+          image,
+          setImage,
+          url,
+          setUrl,
         }}
       >
         <Routes>

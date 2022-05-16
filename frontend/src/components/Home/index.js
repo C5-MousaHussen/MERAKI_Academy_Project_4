@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
+import { UserContext } from "../../App";
 
 // to export Navbar
 import { Navbar } from "../Navbar";
-import { SearchBar } from "../Search";
+//import { SearchBar } from "../Search";
 
 //
 
-
-
 export const Home = () => {
+  const { isSearch, setIsSearch } = useContext(UserContext);
+
+  const [postImage, setPostImage] = useState("");
   const [articles, setArticels] = useState([]);
   const [comments, setComment] = useState();
+  const [result, setResult] = useState();
+  const [findPost, setFindPost] = useState("");
+  let newarr = [];
+  const [filterSearch, setFilterSearch] = useState([]);
 
   const token = localStorage.getItem("token");
 
@@ -23,7 +29,13 @@ export const Home = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((result) => {
-        // console.log(result);
+        const filterSearch = result.data.posts.filter((element) => {
+          return (
+            element.author.firstName.includes(findPost) ||
+            element.description.includes(findPost)
+          );
+        });
+        setResult(filterSearch);
         setArticels(result.data.posts);
       })
       .catch((error) => {
@@ -34,6 +46,21 @@ export const Home = () => {
   useEffect(() => {
     getAllArtilces();
   }, []);
+
+  // here for button of search
+  const buttonSearch = () => {
+    result.filter((element) => {
+      if (
+        element.author.firstName.includes(findPost) ||
+        element.description.includes(findPost)
+      ) {
+        newarr.push(element);
+      }
+      setArticels(newarr);
+    });
+  };
+
+  // console.log(articles);
 
   const addComment = (articleId) => {
     axios
@@ -64,7 +91,7 @@ export const Home = () => {
     axios
       .post(
         "http://localhost:5000/post/",
-        { description, image, like },
+        { description, postImage, like },
         { headers: { Authorization: `Bearer ${tokenInStorage}` } }
       )
       .then((result) => {
@@ -76,7 +103,24 @@ export const Home = () => {
       });
   };
 
-  
+  // function to upload image for post
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", postImage);
+    data.append("upload_preset", "srcmongo");
+    data.append("cloud_name", "mousa");
+
+    fetch("  https://api.cloudinary.com/v1_1/mousa/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        // console.log(data);
+        setPostImage(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="contanirHome">
@@ -101,34 +145,61 @@ export const Home = () => {
         </h1>
         </div> */}
         <h1> صفحة تويتر التجريبية</h1>
-        <div className="Navbar"><Navbar /></div>
+        <div className="Navbar">
+          <Navbar />
+        </div>
       </div>
       <div className="postDiv">
         <div className="createPost">
           <h1>Home</h1>
           <div className="areaText">
-            <textarea className="postBox"
+            <textarea
+              className="postBox"
               placeholder="What's happening?"
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
             ></textarea>{" "}
             <br />
-            <button className="buttonOfTweet" onClick={newPost}> Tweet</button> <br />
+            <input
+              className="inputRegister"
+              type="file"
+              onChange={(e) => {
+                // console.log(e.target.files[0]);
+                setPostImage(e.target.files[0]);
+              }}
+            ></input>{" "}
+            <button onClick={uploadImage}>Upload</button>
+            <button className="buttonOfTweet" onClick={newPost}>
+              {" "}
+              Tweet
+            </button>{" "}
+            <br />
             <p>{message}</p>
           </div>
         </div>
         <div className="getPost">
           {articles &&
             articles.map((element) => {
-              // console.log(element);
+              console.log(element);
               return (
                 <div>
-                  <h4 id={element.id}>{element.author.firstName}</h4>
+                  <div className="barPost">
+                    <img className="profilePic" src={element.author.image} />
+                    <h4 id={element.id}>{element.author.firstName}</h4>
+                  </div>
+
                   <br />
                   <p>{element.description}</p>
                   <br />
-                  <p>{element.like}</p>
+                  <p
+                    className="paragraphImage"
+                    style={{
+                      display: element.postImage !== "" ? "block" : "none",
+                    }}
+                  >
+                    <img className="imagePost" src={element.postImage} />
+                  </p>
 
                   <br />
                   {element.comments &&
@@ -153,9 +224,27 @@ export const Home = () => {
       </div>
       <div className="itemHome">
         <h1>item here</h1>
-     <div><SearchBar /></div>
-
-        </div>
+        {
+          <div>
+            <input
+              type="text"
+              id="header-search"
+              placeholder="Search posts"
+              onChange={(e) => {
+                setFindPost(e.target.value);
+              }}
+            />
+            <button
+              onClick={() => {
+                // setArticels("");
+                buttonSearch();
+              }}
+            >
+              Search
+            </button>
+          </div>
+        }
+      </div>
     </div>
   );
 };
