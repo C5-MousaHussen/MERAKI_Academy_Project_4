@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 
 export const SearchBar = () => {
+  const { isSearch, setIsSearch } =
+    useContext(UserContext);
+
   const [articles, setArticels] = useState([]);
   const [comments, setComment] = useState();
   const [nameUser, setNameUser] = useState();
@@ -41,19 +44,28 @@ export const SearchBar = () => {
   }, []);
 
   const buttonSearch = () => {
-    // console.log(result);
+    //console.log(result);
     result.map((element) => {
-      console.log(element);
-      const postToStr = element.description;
-      const nameToStr = element.post;
+      if (
+        element.author.firstName.includes(findPost) ||
+        element.description.includes(findPost)
+      ) {
+        console.log(element);
+        setIsSearch(true)
+        return element.description;
+      } else {
+        //setIsSearch(false)
+        console.log("not work");
+      }
+
       return (
         <>
-          <p>{element.post}</p>
+          <p>{element.description}</p>
         </>
       );
     });
   };
-
+  
   return (
     <div>
       <label htmlFor="header-search">

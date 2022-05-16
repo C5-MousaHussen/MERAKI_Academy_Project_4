@@ -39,13 +39,30 @@
     
 }
 
+/* profile picture */
+.profilePicture {
+    height: 120px;
+    width: 150px;
+    border: 5in,white,solid;
+    border-radius: 9999px;
+}
+
+.name{
+    margin-top: 15px;
+   margin-left: 60px;
+}
+
 .createPost{
     height: 40%;
    flex-direction: row;
 }
 .styleUser{
     height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
+
 .getPost{
     display: flex;
     flex-direction: column;
@@ -75,21 +92,32 @@ p{
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+.first{
+    width: 50%;
+    
+}
+.second{
+    width: 50%;
+}
+
 .userName{
-    margin-top: 100px;
+    margin-top: 50px;
+    
+    justify-content: center;
     color: rgb(239, 243, 244);
     margin-left: 10px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .butonEdit{
+    float: right;
     margin-top:100px ;
     border-radius: 9999px;
     color: rgb(239, 243, 244);
     font-weight: 700;
-    width: 90px;
+    width: 100px;
     height: 40px;
-    float: right;
     margin-right: 12px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px;
@@ -99,4 +127,9 @@ p{
     border-color: rgb(230, 233, 235);
     background-color: rgb(25, 31, 36);
     
+}
+
+.imagePost{
+    width: 300px;
+    height: 300px;
 }
