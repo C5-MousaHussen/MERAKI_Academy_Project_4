@@ -31,7 +31,7 @@ export const Login = () => {
         setToken(result.data.token);
         const token = result.data.token;
         setisLogin(true);
-        console.log(result);
+       // console.log(result);
         setUserId(result.data._id);
         const userId = result.data._id;
         setfirstName(result.data.firstName);
