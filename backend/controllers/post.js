@@ -5,12 +5,12 @@ const postModel = require("../models/post");
 // function for create post
 
 const createPost = (req, res) => {
-  const { description, image, like } = req.body;
+  const { description, postImage, like } = req.body;
 
   const newPost = new postModel({
     author: req.token.userId,
     description,
-    image,
+    postImage,
     like,
   });
 
