@@ -4,7 +4,8 @@ const userModel = require("../models/user");
 // make a function for register user to the site
 
 const register = (req, res) => {
-  const { firstName, lastName, age, country, email, password } = req.body;
+  const { firstName, lastName, age, country, email, password, image } =
+    req.body;
 
   const user = new userModel({
     firstName,
@@ -13,6 +14,7 @@ const register = (req, res) => {
     country,
     email,
     password,
+    image,
   });
 
   user
@@ -37,6 +39,13 @@ const register = (req, res) => {
         err: err.message,
       });
     });
+};
+
+const getAllUser = (req, res) => {
+  userModel
+    .find({})
+    .then((result) => {})
+    .catch((err) => {});
 };
 
 module.exports = { register };
