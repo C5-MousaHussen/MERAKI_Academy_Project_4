@@ -41,11 +41,45 @@ const register = (req, res) => {
     });
 };
 
-const getAllUser = (req, res) => {
+//function to update user profile
+const updateProfile = (req, res) => {
+  const authorName = req.params.id;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const image = req.body.image;
+
   userModel
-    .find({})
-    .then((result) => {})
-    .catch((err) => {});
+    .findByIdAndUpdate(
+      {
+        _id: authorName,
+      },
+      {
+        firstName:firstName,
+        lastName:lastName,
+        image:image,
+        
+      }
+    )
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Post: ${authorName} is not found`,
+        });
+      }
+      res.status(202).json({
+        success: true,
+        message: `user updated`,
+        article: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
 };
 
-module.exports = { register };
+module.exports = { register, updateProfile };
