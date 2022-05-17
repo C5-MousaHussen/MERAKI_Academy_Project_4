@@ -9,6 +9,7 @@ import { Login } from "./components/Login";
 import { AddPost } from "./components/Addpost";
 import { Home } from "./components/Home";
 import { ProfileOfUser } from "./components/Profile";
+import { EditProfile } from "./components/EditProfile";
 
 export const UserContext = createContext();
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/post" element={<AddPost />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<ProfileOfUser />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
         </Routes>
       </UserContext.Provider>
     </div>
