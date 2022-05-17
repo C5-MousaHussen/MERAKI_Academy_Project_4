@@ -38,20 +38,21 @@ const getPostByAuthor = (req, res) => {
 
 const deletePostById = (req, res) => {
   const author = req.token.userId;
-  const _id = req.body._id;
-
+  const _id = req.params.id;
+  console.log({ _id });
   postModel
     .findByIdAndDelete({ _id })
     .then((result) => {
-      if (!result.deletedCount) {
+      console.log(result);
+      if (result === null) {
         return res.status(404).json({
           success: false,
-          message: `The Author not found`,
+          message: `The post not found`,
         });
       }
       res.status(200).json({
         success: true,
-        message: `Deleted articles for the author: ${author}`,
+        message: `Deleted post ${_id}`,
         result,
         author,
       });
@@ -69,9 +70,10 @@ const deletePostById = (req, res) => {
 const updatePostById = (req, res) => {
   const _id = req.body._id;
   const description = req.body.description;
+  const image = req.body.image;
 
   postModel
-    .findByIdAndUpdate({ _id }, { description: description })
+    .findByIdAndUpdate({ _id }, { description: description, image: image })
     .then((result) => {
       if (!result) {
         return res.status(404).json({
