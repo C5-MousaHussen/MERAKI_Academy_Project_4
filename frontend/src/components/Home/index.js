@@ -181,7 +181,7 @@ export const Home = () => {
         <div className="getPost">
           {articles &&
             articles.map((element) => {
-              console.log(element);
+              //console.log(element);
               return (
                 <div>
                   <div className="barPost">

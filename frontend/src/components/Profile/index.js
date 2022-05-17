@@ -17,11 +17,13 @@ export const ProfileOfUser = () => {
   const [articles, setArticels] = useState([]);
   const [comments, setComment] = useState("");
   const [postImage, setPostImage] = useState("");
+  const [firstName, setFirsName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const token = localStorage.getItem("token");
   const userId1 = localStorage.getItem("userId");
-  const firstName = localStorage.getItem("firstName");
-  const lastName = localStorage.getItem("lastName");
+  // const firstName = localStorage.getItem("firstName");
+  // const lastName = localStorage.getItem("lastName");
 
   // console.log(userId1);
 
@@ -34,6 +36,8 @@ export const ProfileOfUser = () => {
         //console.log(result.data.posts[0].author.image);
         setArticels(result.data.posts);
         setImage(result.data.posts[0].author.image);
+        setFirsName(result.data.posts[0].author.firstName);
+        setLastName(result.data.posts[0].author.lastName);
       })
       .catch((error) => {
         console.log(error);
@@ -88,7 +92,30 @@ export const ProfileOfUser = () => {
       .catch((err) => console.log(err));
   };
 
-  // console.log(postImage);
+  //function to delet post
+
+  const deletePost = (postId) => {
+    axios
+      .delete(`http://localhost:5000/profile/${postId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        getPostByAuthor();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // function for edit the post
+
+  const editPost = (postId) => {
+    axios.put(`http://localhost:5000/profile/${postId}`, {
+      description,
+      image,
+    });
+  };
+
   return (
     <div className="contanerOfProile">
       <div className="navbarBox">
@@ -109,42 +136,39 @@ export const ProfileOfUser = () => {
                 </div>
               </h2>
             </div>
-            <div className="second">
-              <button className="butonEdit">Edit profile</button>
-            </div>
-          </div>
-          <div className="createPost">
-            <div className="areaText">
-              <textarea
-                className="postBox"
-                placeholder="What's happening?"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></textarea>{" "}
-              <br />
-              <input
-                className="inputRegister"
-                type="file"
-                onChange={(e) => {
-                  // console.log(e.target.files[0]);
-                  setPostImage(e.target.files[0]);
-                }}
-              ></input>{" "}
-              <button onClick={uploadImage}>Upload</button>
-              <button className="buttonOfTweet" onClick={newPost}>
-                {" "}
-                Tweet
-              </button>{" "}
-              <br />
-              <p>{message}</p>
+            <div className="createPost">
+              <div className="areaText">
+                <textarea
+                  className="postBox"
+                  placeholder="What's happening?"
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                ></textarea>{" "}
+                <br />
+                <input
+                  className="inputRegister"
+                  type="file"
+                  onChange={(e) => {
+                    // console.log(e.target.files[0]);
+                    setPostImage(e.target.files[0]);
+                  }}
+                ></input>{" "}
+                <button onClick={uploadImage}>Upload</button>
+                <button className="buttonOfTweet" onClick={newPost}>
+                  {" "}
+                  Tweet
+                </button>{" "}
+                <br />
+                <p>{message}</p>
+              </div>
             </div>
           </div>
         </div>
         <div className="getPost">
           {articles &&
             articles.map((element) => {
-              // console.log(element.postImage);
+              // console.log(element);
               return (
                 <div>
                   <h4 id={element.id}>{element.author.firstName}</h4>
@@ -158,6 +182,22 @@ export const ProfileOfUser = () => {
                   >
                     <img className="imagePost" src={element.postImage} />{" "}
                   </p>
+                  <div>
+                    <button
+                      onClick={() => {
+                        deletePost(element._id);
+                      }}
+                    >
+                      Delet Post
+                    </button>
+                    <button
+                      onClick={() => {
+                        editPost(element._id);
+                      }}
+                    >
+                      Edit Post
+                    </button>
+                  </div>
                   <div className="borderPost"></div>
 
                   <br />
@@ -166,7 +206,11 @@ export const ProfileOfUser = () => {
             })}
         </div>
       </div>
-      <div className="searchBar"></div>
+      <div className="searchBar">
+        <div>
+          <button className="butonEdit">Edit profile</button>
+        </div>
+      </div>
     </div>
   );
 };

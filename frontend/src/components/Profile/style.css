@@ -1,13 +1,21 @@
+*{
+    
+    padding: 0;
+    margin: 0;
+   /*  background-color: rgb(25, 31, 36); */
+
+}
+
 .contanerOfProile{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 750px;
     background-color: rgb(25, 31, 36);
   
 }
 
 .navbarBox{ 
-    width: 250px;
+    width: 20%;
     height: 100%;
     background-color:rgb(25, 31, 36);
     flex-direction: column;
@@ -22,7 +30,7 @@
 /* profile department */
 
 .profile{
-    width: 55%;
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -42,25 +50,24 @@
 /* profile picture */
 .profilePicture {
     height: 120px;
-    width: 150px;
-    border: 5in,white,solid;
+    width: 120px;
     border-radius: 9999px;
+    margin-top: 20px;
 }
 
-.name{
-    margin-top: 15px;
-   margin-left: 60px;
-}
+
 
 .createPost{
-    height: 40%;
-   flex-direction: row;
+    height: 100%;
+   flex-direction: column;
+   border:  rgb(47, 51, 54);
+   
 }
 .styleUser{
-    height: 60%;
+    height: 590px;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .getPost{
@@ -75,7 +82,6 @@
     margin-bottom: 4px;
     margin-top: 4px;
     align-items: stretch;
-    border: 0 solid black;
     box-sizing: border-box;
     margin-left: 5px;
 }
@@ -94,7 +100,8 @@ p{
 
 
 .first{
-    width: 50%;
+    width: 100%;
+    height: 60%;
     
 }
 .second{
@@ -102,12 +109,18 @@ p{
 }
 
 .userName{
-    margin-top: 50px;
-    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     color: rgb(239, 243, 244);
-    margin-left: 10px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+}
+
+.name{
+    margin-top: 35px;
 }
 
 .butonEdit{
@@ -132,4 +145,8 @@ p{
 .imagePost{
     width: 300px;
     height: 300px;
+}
+
+.searchBar{
+    width: 20%;
 }
