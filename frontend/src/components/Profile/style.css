@@ -58,7 +58,7 @@
 
 
 .createPost{
-    height: 100%;
+    
    flex-direction: column;
    border:  rgb(47, 51, 54);
    
@@ -69,6 +69,17 @@
     display: flex;
     flex-direction: column;
 }
+.marshmello{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.upPic{
+width: 50%;
+margin-left: 15px;
+}
+
 
 .getPost{
     display: flex;
@@ -88,13 +99,15 @@
 
 h4{ 
     margin-left: 7px;
-    color: aliceblue;
+    color: rgb(19, 26, 30);
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
 }
+
 p{
     margin-left: 10px;
-    color: white;
-    font-size: larger;
+    color: rgb(19, 26, 30);
+    font-size: large;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -147,6 +160,10 @@ p{
     height: 300px;
 }
 
-.searchBar{
-    width: 20%;
+
+
+.itemHome{
+   display: flex;
+   flex-direction: column;
+   width: 20%;
 }
