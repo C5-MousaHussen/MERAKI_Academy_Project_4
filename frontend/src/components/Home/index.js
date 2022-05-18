@@ -263,7 +263,9 @@ export const Home = () => {
                   >
                     <div className="insideRoom">
                       <div className="headerRoomComment">
-                        <button className="editButton">
+                        <button onClick={()=>{
+                          setIdPost("")
+                        }} className="editButton">
                           <svg width="16" height="16" viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
                           </svg>
@@ -271,21 +273,25 @@ export const Home = () => {
                       </div>
 
                       <div className="footerRoomComment">
+                        <div className="theComments">
                       {element.comments &&
                     element.comments.map((ele) => {
                       // console.log(ele);
-                      return <p>{ele.comments}</p>;
+                      return <p className="effectComment">{ele.comments}</p>;
                     })}
-                  <textarea
+                    </div>
+                    <div className="ReactionCommint">
+                  <textarea className="boxComment"
                     placeholder="comment"
                     type="text"
                     onChange={(e) => {
                       setComment(e.target.value);
                     }}
                   ></textarea>
-                  <button onClick={() => addComment(element._id)}>
-                    Add Comment
+                  <button className="buttonOfComment" onClick={() => addComment(element._id)}>
+                    Replay
                   </button>
+                  </div>
                       </div>
                     </div>
                   </div>
