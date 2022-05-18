@@ -19,6 +19,29 @@
 }
  .inputLogin{
     width:  200px;
-    height: 50px;
-   border-radius: 5px;
+    height: 40px;
+   border-radius: 9999px;
+   border-width: 1px;
+   padding: 5px;
 } 
+.someEdit{
+    margin-bottom: 25px;
+}
+.smallestDiv{
+    width: 200px;
+}
+.afterThat{
+    font-size: 10px !important;
+}
+.tik{
+    border-width: 0px;
+    cursor: pointer;
+}
+
+.in{
+    cursor: pointer;
+}
+
+.Padding{
+    cursor: pointer;
+}
