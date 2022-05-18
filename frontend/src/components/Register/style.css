@@ -1,8 +1,8 @@
 .concontainerRegister{
 
     width: 100%;
-    height: 750px;
-    background-color: rgb(3, 3, 15);
+    height: 550px;
+    background-color: rgb(231, 238, 234);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,14 +11,52 @@
 
 .itemOfRegister{
 
-    width:  40%;
-    height: 60%;
-    background-color: brown;
-    text-align: center;
+    width:  50%;
+    height: 85%;
+    border: 2px solid #dadce0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -5px;
    
 }
  .inputRegister{
     width:  200px;
-    height: 50px;
-   border-radius: 5px;
+    height: 40px;
+    padding: 5px;
+   border-radius: 9999px;
+   border-width: 1px;
+   
+
 } 
+.bb{
+    border-width: 1px;
+}
+
+.headerRegister{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.firtsitemSvgRigister{
+    height: 25px;
+    margin-top: 7px;
+}
+.buttonJoin2{
+    width:  200px;
+    height: 40px;
+    border-radius: 9999px;
+    border-width: 1px;
+    cursor: pointer;
+}
+.buttonJoin3{
+    width: 200px;
+    height: 25px;
+    border-radius: 9999px;
+    border-width: 1px;
+    position: sticky;
+    cursor: pointer;
+}

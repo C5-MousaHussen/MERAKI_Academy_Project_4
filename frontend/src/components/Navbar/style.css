@@ -5,12 +5,15 @@
     flex-direction: column;
     color: rgb(19, 26, 30);
     
+   
+    
 }
 .divIcon{
     width: 100%;
     height: 80px;
     display: flex;
     flex-direction: column;
+    
     
 } 
 
