@@ -10,6 +10,7 @@ import { AddPost } from "./components/Addpost";
 import { Home } from "./components/Home";
 import { ProfileOfUser } from "./components/Profile";
 import { EditProfile } from "./components/EditProfile";
+import { Main } from "./components/Main";
 
 export const UserContext = createContext();
 
@@ -54,6 +55,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<ProfileOfUser />} />
           <Route path="/profile/edit" element={<EditProfile />} />
+          <Route path="/" element={<Main />} />
+
         </Routes>
       </UserContext.Provider>
     </div>
@@ -61,3 +64,4 @@ function App() {
 }
 
 export default App;
+
