@@ -6,8 +6,10 @@
     
 }
 
+
+
 .contanirHome{
-    background-color: rgb(231, 238, 234);
+    background-color: rgb(239, 243, 244);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -76,7 +78,7 @@ margin-top: 218px; */
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(231, 238, 234);
+    background-color: rgb(239, 243, 244);
     border-bottom: 2px ridge;
 }
 
@@ -325,7 +327,57 @@ rgb(239, 243, 244);
 .effectComment{
     border-bottom: 1px outset;
     margin-right: 8px;
+    font-size: 12px;
+    margin-left: 35px;
 }
+
+.showImagePost{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    border-bottom: 2px ridge;
+    border-top: 2px ridge;;
+}
+.ImagePost{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-left: 2px;
+}
+.sortImage{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.hedarOfTrend{
+    margin-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(19, 26, 30);
+}
+.contanerOfComment{
+    display: flex;
+    flex-direction: column;
+}
+
+.commentPicture{
+    width: 30px;
+    height: 30px;
+    border-radius: 99999px;
+}
+.commenterName{
+    font-size: 10px;
+}
+.hedearCommenter{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+}
+.zz{
+    margin-left: 20px;
+font-size: 12px;}
 /*
 color i need it
 border-bottom: 4px outset;
