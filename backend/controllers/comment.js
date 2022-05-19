@@ -16,7 +16,7 @@ const createComment = (req, res) => {
     .save()
     .then((result) => {
       postModel
-        .updateOne({ _id: postId }, { $push: { comments: result._id } })
+        .findByIdAndUpdate({ _id: postId }, { $push: { comments: result._id } })
         .then(() => {
           //console.log(result);
           res.status(201).json({

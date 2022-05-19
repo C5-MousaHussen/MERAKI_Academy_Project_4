@@ -39,7 +39,12 @@ const getAllPosts = (req, res) => {
 
   postModel
     .find({})
-    .populate("comments")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "commenter",
+      },
+    })
     .populate("author")
     .then((posts) => {
       if (posts.length) {
