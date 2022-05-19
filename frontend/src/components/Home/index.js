@@ -24,6 +24,7 @@ export const Home = () => {
 
   const token = localStorage.getItem("token");
 
+  //function to get all posts
   const getAllArtilces = () => {
     axios
       .get("http://localhost:5000/post", {
@@ -37,7 +38,7 @@ export const Home = () => {
           );
         });
         setResult(filterSearch);
-        setArticels(result.data.posts);
+        setArticels(result.data.posts.reverse());
       })
       .catch((error) => {
         console.log(error);
@@ -63,6 +64,7 @@ export const Home = () => {
 
   // console.log(articles);
 
+  //function to add a comments
   const addComment = (articleId) => {
     axios
       .post(
@@ -88,6 +90,7 @@ export const Home = () => {
 
   const tokenInStorage = localStorage.getItem("token");
 
+  //to creat new post
   const newPost = () => {
     axios
       .post(
@@ -122,8 +125,6 @@ export const Home = () => {
       })
       .catch((err) => console.log(err));
   };
-
-  // function to show comments
 
   return (
     <div className="contanirHome">
@@ -263,9 +264,12 @@ export const Home = () => {
                   >
                     <div className="insideRoom">
                       <div className="headerRoomComment">
-                        <button onClick={()=>{
-                          setIdPost("")
-                        }} className="editButton">
+                        <button
+                          onClick={() => {
+                            setIdPost("");
+                          }}
+                          className="editButton"
+                        >
                           <svg width="16" height="16" viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
                           </svg>
@@ -274,29 +278,48 @@ export const Home = () => {
 
                       <div className="footerRoomComment">
                         <div className="theComments">
-                      {element.comments &&
-                    element.comments.map((ele) => {
-                      // console.log(ele);
-                      return <p className="effectComment">{ele.comments}</p>;
-                    })}
-                    </div>
-                    <div className="ReactionCommint">
-                  <textarea className="boxComment"
-                    placeholder="comment"
-                    type="text"
-                    onChange={(e) => {
-                      setComment(e.target.value);
-                    }}
-                  ></textarea>
-                  <button className="buttonOfComment" onClick={() => addComment(element._id)}>
-                    Replay
-                  </button>
-                  </div>
+                          {element.comments &&
+                            element.comments.map((ele) => {
+                              console.log(ele.commenter.image);
+                              return (
+                                <div className="contanerOfComment">
+                                  <div className="hedearCommenter">
+                                    <img
+                                      className="commentPicture"
+                                      src={ele.commenter.image}
+                                    />
+                                    <p className="commenterName">
+                                      {ele.commenter.firstName}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="effectComment">
+                                      <p className="zz">{ele.comments}</p>
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                        </div>
+                        <div className="ReactionCommint">
+                          <textarea
+                            className="boxComment"
+                            placeholder="comment"
+                            type="text"
+                            onChange={(e) => {
+                              setComment(e.target.value);
+                            }}
+                          ></textarea>
+                          <button
+                            className="buttonOfComment"
+                            onClick={() => addComment(element._id)}
+                          >
+                            Replay
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                 
                 </div>
               );
             })}
@@ -324,6 +347,27 @@ export const Home = () => {
               <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z" />
             </svg>
           </button>
+        </div>
+        <div className="showImagePost">
+          <div>
+            <h3 className="hedarOfTrend">Trends for you</h3>
+          </div>
+          <div className="sortImage">
+            {articles &&
+              articles.map((element) => {
+                //console.log(element.postImage);
+
+                if (element.postImage === "") {
+                  return <div></div>;
+                }
+
+                return (
+                  <div>
+                    <img className="ImagePost" src={element.postImage} />
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
