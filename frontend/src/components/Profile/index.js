@@ -37,7 +37,7 @@ export const ProfileOfUser = () => {
       })
       .then((result) => {
         //console.log(result.data.posts[0].author.image);
-        setArticels(result.data.posts);
+        setArticels(result.data.posts.reverse());
         setImage(result.data.posts[0].author.image);
         setFirsName(result.data.posts[0].author.firstName);
         setLastName(result.data.posts[0].author.lastName);
