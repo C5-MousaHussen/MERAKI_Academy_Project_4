@@ -11,6 +11,7 @@ import { Home } from "./components/Home";
 import { ProfileOfUser } from "./components/Profile";
 import { EditProfile } from "./components/EditProfile";
 import { Main } from "./components/Main";
+import { About } from "./components/About";
 
 export const UserContext = createContext();
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/profile" element={<ProfileOfUser />} />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/" element={<Main />} />
+          <Route path="/about" element={<About />} />
 
         </Routes>
       </UserContext.Provider>
