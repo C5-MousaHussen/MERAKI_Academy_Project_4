@@ -62,6 +62,9 @@ export const Main = () => {
               navigate("/login")
           }} className="secondItemH1 buttonJoin in">Sign In</button>
         </div>
+        <div className="aboutSection"><p className="secondItemH1 ask">know More <button onClick={()=>{
+          navigate("/about")
+        }} className="buttonOFAbout">About Us</button></p></div>
       </div>
       <div className="rightSide">
         <div>
@@ -75,3 +78,4 @@ export const Main = () => {
     </div>
   );
 };
+
