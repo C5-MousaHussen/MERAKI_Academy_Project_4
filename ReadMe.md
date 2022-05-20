@@ -59,15 +59,16 @@ Now the App is ready ..
 ## 🎈 Usage <a name="usage"></a>
 
 - You must register to the app by register navigate
-<img width=200px height=200px src="https://ibb.co/mhNpv28" alt="Register"></a>
+<img width=200px height=200px src="https://i.ibb.co/DwrdGvp/register.jpg" alt="Register"></a>
 </p>
 
 - you must Login to the add
-<img width=200px height=200px src="https://ibb.co/SB09mDx" alt="Login"></a>
+
+## <img width=200px height=200px src="https://i.ibb.co/sqQM1pP/Login.jpg" alt="Login"></a>
 </p>
 
 - You can add Tweet from here
-<img width=200px height=200px src="https://ibb.co/kyf9D6Q" alt="Tweet"></a>
+<img width=200px height=200px src="https://i.ibb.co/z5Y72HG/Tweet.jpg" alt="Tweet"></a>
 </p>
 
 ## ⛏️ Built Using <a name = "built_using"></a>
