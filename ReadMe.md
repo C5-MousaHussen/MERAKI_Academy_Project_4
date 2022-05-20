@@ -25,7 +25,7 @@
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-visual studio follow this <link src="https://visualstudio.microsoft.com/downloads/">
+visual studio follow this [link](https://visualstudio.microsoft.com/downloads/)
 
 ### Prerequisites
 
