@@ -25,37 +25,46 @@
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-visual studio follow this [link](https://visualstudio.microsoft.com/downloads/)
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+<li> visual studio follow this [link](https://visualstudio.microsoft.com/downloads/) to install
 
-```
-Give examples
-```
+GetBash Follow this [link](https://git-scm.com/download/win) to install
+
+MongoDB Follow this [link](https://www.mongodb.com/try/download/community) to install
+
+Node.Js Follow this [link](https://nodejs.org/en/download/) to install
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+1. Clone the repo to your local mashine using Git Bash
 
-Say what the step will be
+ (( git clone https://github.com/C5-MousaHussen/MERAKI_Academy_Project_4#about))
 
-```
-Give the example
-```
+ 2. Install packeges reapeat this step in backend and frontend folder
 
-And repeat
+(( npm install ))
 
-```
-until finished
-```
+3. Run server inside the backend folder
 
-End with an example of getting some data out of the system or using it for a little demo.
+(( npm run dev // npm run start))
+
+4. Run server inside the frontend folder
+
+(( npm start ))
+
+
+Now the App is ready ..
+
+
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+- You must register to the app by register navigate
+ <img width=200px height=200px src="./Assesnt/picture/register" alt="Register"></a>
+</p>
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
